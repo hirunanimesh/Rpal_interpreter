@@ -1,6 +1,6 @@
-let OEList T = OEListRec (T, Order T)
-where rec OEListRec (T, i) = 
-    i eq 0 -> nil
-    | (OEListRec (T, (i-1)) aug (OddEven (T i)))
-where OddEven n = (n - (n/2) * 2) eq 1 -> 'Odd' | 'Even'
-in Print (OEList (3, 5, 121, 10, 12))
+let Factorial N =
+    let rec Factorial_helper Num Acc =
+        Num eq 0 -> Acc
+        | Factorial_helper (Num - 1) (Acc * Num)
+    in Factorial_helper N 1
+in Print(Factorial 5)

@@ -28,8 +28,11 @@ class TreeBuilder:
         if not string_representation:
             return StandardTree()
         
+        
+        
         # Create the root node
         root = NodeFactory.create_node(string_representation[0], 0)
+        
         
         # Initialize tracking variables
         previous_node = root
@@ -45,19 +48,22 @@ class TreeBuilder:
                 i += 1
             
             # Extract the node data
+            
             node_data = line[i:]
             
             # Handle special node types (those with type:value format)
-            if '<' in node_data and '>' in node_data:
+            #if '<' in node_data and '>' in node_data:
                 # Extract the type and value
-                node_type, node_value = self._parse_special_node(node_data)
+                #node_type, node_value = self._parse_special_node(node_data)
                 # Create the node with the extracted value
-                current_node = NodeFactory.create_node(node_value, depth)
-            else:
+                #current_node = NodeFactory.create_node(node_value, depth)
+            #else:
                 # Create a regular node
-                current_node = NodeFactory.create_node(node_data, depth)
+                #print("node data", node_data)
+                #current_node = NodeFactory.create_node(node_data, depth)
             
             # Connect the node to the tree
+            current_node = NodeFactory.create_node(node_data, depth)
             if current_depth < depth:
                 # This is a child of the previous node
                 previous_node.children.append(current_node)

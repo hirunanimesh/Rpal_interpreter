@@ -47,7 +47,7 @@ class StandardTree:
             indent_level (int): The current indentation level
         """
         # Print the node's data with indentation based on the level
-        print(node.get_data())
+       
         print("." * indent_level + str(node.get_data()))
         
         # Traverse through each child node recursively

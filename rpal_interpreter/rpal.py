@@ -82,12 +82,12 @@ def main():
             return
         
         #Step 4: Build and execute the CSE machine
-        #cse_builder = CSEBuilder()
-        #cse_machine = cse_builder.build_machine(std_tree)
+        cse_builder = CSEBuilder()
+        cse_machine = cse_builder.build_machine(std_tree)
         
         # Execute the program and print the result
-        #print("Output of the program is:")
-        #print(cse_machine.evaluate())
+        print("Output of the program is:")
+        print(cse_machine.evaluate())
         
     except FileNotFoundError:
         print(f"Error: Could not find file '{args.source_file}'")
