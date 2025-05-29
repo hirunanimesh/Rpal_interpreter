@@ -5,7 +5,8 @@ import sys
 from Lexer.token_analyzer import tokenize
 from Parser.syntax_parser import SyntaxParser
 from Standardizer.tree_builder import TreeBuilder
-from CSEMachine.cse_builder import CSEBuilder
+from CSEMachine.cse_factory import CSEMachineFactory
+from CSEMachine.csemachine import CSEMachine
 
 def main():
     """Main entry point for the RPAL interpreter."""
@@ -82,12 +83,12 @@ def main():
             return
         
         #Step 4: Build and execute the CSE machine
-        cse_builder = CSEBuilder()
-        cse_machine = cse_builder.build_machine(std_tree)
+        cse_builder = CSEMachineFactory()
+        cse_machine = cse_builder.get_cse_machine(std_tree)
         
         # Execute the program and print the result
         print("Output of the program is:")
-        print(cse_machine.evaluate())
+        print(cse_machine.get_answer())
         
     except FileNotFoundError:
         print(f"Error: Could not find file '{args.source_file}'")
