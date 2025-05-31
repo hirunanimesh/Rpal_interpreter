@@ -14,7 +14,6 @@ def main():
     # Set up command-line argument parsing
     arg_parser = argparse.ArgumentParser(
         description='RPAL Interpreter - Processes RPAL language programs',
-        epilog='Example: python rpal.py program.rpal'
     )
     
     arg_parser.add_argument(
@@ -88,7 +87,7 @@ def main():
         
         # Execute the program and print the result
         print("Output of the program is:")
-        print(cse_machine.get_answer())
+        cse_machine.get_answer()
         
     except FileNotFoundError:
         print(f"Error: Could not find file '{args.source_file}'")
