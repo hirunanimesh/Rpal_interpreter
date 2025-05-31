@@ -1,9 +1,5 @@
-"""
-CSE Machine implementation
-Compatible with the user's lexer, parser, and standardized tree
-"""
 
-from .nodes import *
+from .symbols import *
 
 class CSEMachine:
     """
@@ -23,18 +19,11 @@ class CSEMachine:
         self.environment = environment
 
     def execute(self):
-        """
-        Execute the CSE Machine until the control list is empty
         
-        Returns:
-            The final result of the execution
-        """
         current_environment = self.environment[0]
         j = 1
         while self.control:
-            # Uncomment these lines to debug the execution
-            # self.write_control_to_file("control_log.txt")
-            # self.write_stack_to_file("stack_log.txt")
+            
             
             current_symbol = self.control.pop()
             
@@ -108,7 +97,7 @@ class CSEMachine:
                     if next_symbol.get_data() == "Print":
                         # Print function - prints the value
                         value = self.stack.pop(0)
-                        print(value.get_data())
+                        value.get_data()              ###########################
                         self.stack.insert(0, value)
                         
                     elif next_symbol.get_data() == "Stem":
@@ -251,54 +240,6 @@ class CSEMachine:
                 # Handle other symbols (literals)
                 self.stack.insert(0, current_symbol)
 
-    def write_stack_to_file(self, file_path):
-        """
-        Write the current stack state to a file for debugging
-        
-        Args:
-            file_path (str): Path to the output file
-        """
-        with open(file_path, 'a') as file:
-            for symbol in self.stack:
-                file.write(symbol.get_data())
-                if isinstance(symbol, (Lambda, Delta, E, Eta)):
-                    file.write(str(symbol.get_index()))
-                file.write(",")
-            file.write("\n")
-
-    def write_control_to_file(self, file_path):
-        """
-        Write the current control state to a file for debugging
-        
-        Args:
-            file_path (str): Path to the output file
-        """
-        with open(file_path, 'a') as file:
-            for symbol in self.control:
-                file.write(symbol.get_data())
-                if isinstance(symbol, (Lambda, Delta, E, Eta)):
-                    file.write(str(symbol.get_index()))
-                file.write(",")
-            file.write("\n")
-    
-    def clear_file(self, file_path):
-        """
-        Clear the contents of a file
-        
-        Args:
-            file_path (str): Path to the file to clear
-        """
-        open(file_path, 'w').close()
-
-    def print_environment(self):
-        """Print the environment chain for debugging"""
-        for symbol in self.environment:
-            print(f"e{symbol.get_index()} --> ", end="")
-            if symbol.get_index() != 0:
-                print(f"e{symbol.get_parent().get_index()}")
-            else:
-                print()
-                
     def convert_string_to_bool(self, data):
         """
         Convert string representation of boolean to Python boolean
@@ -306,8 +247,6 @@ class CSEMachine:
         Args:
             data (str): String representation of boolean ("true" or "false")
             
-        Returns:
-            bool: Python boolean value
         """
         if data == "true":
             return True
@@ -316,8 +255,6 @@ class CSEMachine:
 
     def apply_unary_operation(self, rator, rand):
         """
-        Apply unary operation to operand
-        
         Args:
             rator (Uop): Unary operator
             rand (Rand): Operand
@@ -335,9 +272,7 @@ class CSEMachine:
             return Err()
 
     def apply_binary_operation(self, rator, rand1, rand2):
-        """
-        Apply binary operation to operands
-        
+        """      
         Args:
             rator (Bop): Binary operator
             rand1 (Rand): First operand

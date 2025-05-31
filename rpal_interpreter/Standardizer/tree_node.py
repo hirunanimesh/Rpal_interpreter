@@ -1,5 +1,4 @@
 """
-Tree Node Module for RPAL Interpreter
 This module defines the node structure for the Abstract Syntax Tree.
 """
 

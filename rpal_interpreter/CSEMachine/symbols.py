@@ -1,7 +1,4 @@
-"""
-Node classes for CSE Machine implementation
-Compatible with the user's lexer, parser, and standardized tree
-"""
+
 
 class Symbol:
     """Base class for all symbols in the CSE machine"""

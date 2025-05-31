@@ -1,5 +1,4 @@
 """
-Tree Builder Module for RPAL Interpreter
 This module builds a standardized Abstract Syntax Tree from string representation.
 """
 

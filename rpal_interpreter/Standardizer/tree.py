@@ -1,5 +1,4 @@
 """
-Tree Module for RPAL Interpreter
 This module defines the Abstract Syntax Tree structure.
 """
 
