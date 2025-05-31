@@ -1,9 +1,5 @@
-"""
-CSE Machine Factory implementation
-Compatible with the user's lexer, parser, and standardized tree
-"""
 
-from .nodes import *
+from .symbols import *
 from .csemachine import CSEMachine
 
 class CSEMachineFactory:
@@ -124,8 +120,6 @@ class CSEMachineFactory:
 
     def get_delta(self, node):
         """
-        Create a Delta symbol (code block) from a tree node
-        
         Args:
             node: A node from the standardized tree
             

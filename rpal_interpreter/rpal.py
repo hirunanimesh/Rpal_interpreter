@@ -3,8 +3,7 @@ import sys
 from Lexer.token_analyzer import tokenize
 from Parser.syntax_parser import SyntaxParser
 from Standardizer.tree_builder import TreeBuilder
-from CSEMachine.cse_factory import CSEMachineFactory
-from CSEMachine.csemachine import CSEMachine
+from CSEMachine.factory import CSEMachineFactory
 from Parser.StringAst import StringAst
 
 def main():
