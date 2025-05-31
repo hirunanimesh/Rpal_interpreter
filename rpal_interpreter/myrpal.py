@@ -8,7 +8,7 @@ from Parser.StringAst import StringAst
 
 def main():
     """Main entry point for the RPAL interpreter."""
-    print("RPAL Interpreter")
+
     # Set up command-line argument parsing
     arg_parser = argparse.ArgumentParser(
         description='RPAL Interpreter - Processes RPAL language programs',
