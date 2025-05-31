@@ -87,7 +87,7 @@ def main():
         
         # Execute the program and print the result
         print("Output of the program is:")
-        cse_machine.get_answer()
+        print(cse_machine.get_answer())
         
     except FileNotFoundError:
         print(f"Error: Could not find file '{args.source_file}'")
