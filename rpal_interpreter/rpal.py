@@ -5,6 +5,7 @@ from Parser.syntax_parser import SyntaxParser
 from Standardizer.tree_builder import TreeBuilder
 from CSEMachine.cse_factory import CSEMachineFactory
 from CSEMachine.csemachine import CSEMachine
+from Parser.StringAst import StringAst
 
 def main():
     """Main entry point for the RPAL interpreter."""
@@ -57,7 +58,10 @@ def main():
             raise Exception("Parsing failed")
 
         # Convert AST to string representation for display or further processing
-        ast_strings = parser.convert_ast_to_string_ast()
+        #ast_strings = parser.convert_ast_to_string_ast()
+        ast_strings_converter = StringAst(parser)
+        ast_strings = ast_strings_converter.convert_ast_to_string_ast()
+        
 
         # Display AST if requested
         if args.ast:
@@ -83,7 +87,7 @@ def main():
         
         # Execute the program and print the result
         print("Output of the program is:")
-        cse_machine.get_answer()
+        print(cse_machine.get_answer())
         
     except FileNotFoundError:
         print(f"Error: Could not find file '{args.source_file}'")

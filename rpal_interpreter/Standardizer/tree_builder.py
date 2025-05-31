@@ -51,16 +51,6 @@ class TreeBuilder:
             
             node_data = line[i:]
             
-            # Handle special node types (those with type:value format)
-            #if '<' in node_data and '>' in node_data:
-                # Extract the type and value
-                #node_type, node_value = self._parse_special_node(node_data)
-                # Create the node with the extracted value
-                #current_node = NodeFactory.create_node(node_value, depth)
-            #else:
-                # Create a regular node
-                #print("node data", node_data)
-                #current_node = NodeFactory.create_node(node_data, depth)
             
             # Connect the node to the tree
             current_node = NodeFactory.create_node(node_data, depth)
