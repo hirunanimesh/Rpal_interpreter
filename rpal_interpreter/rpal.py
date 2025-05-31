@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import argparse
 import sys
 from Lexer.token_analyzer import tokenize
@@ -43,26 +41,24 @@ def main():
         
         # Step 1: Tokenize the source code
         tokens = tokenize(source_code)
-        
-        print("Tokens:")
-        for token in tokens:
-            print(token)
+
+        if not tokens:
+            raise ValueError("No tokens found in the source code. Error in tokenization.")
+            
         
         # Step 2: Parse tokens into an Abstract Syntax Tree
         parser = SyntaxParser(tokens)
 
 
         ast_root = parser.parse()
-        print("printing ast npdes")
 
 
-        
         if ast_root is None:
             raise Exception("Parsing failed")
-        
+
         # Convert AST to string representation for display or further processing
         ast_strings = parser.convert_ast_to_string_ast()
-        
+
         # Display AST if requested
         if args.ast:
             print("Abstract Syntax Tree:")
