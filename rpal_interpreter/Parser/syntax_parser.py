@@ -3,43 +3,43 @@ Parser Module for RPAL Interpreter
 Modified to be compatible with the provided lexical analyzer
 """
 
-from enum import Enum
+from enum import Enum, auto
 # Modified import to use the provided lexical analyzer
 from Lexer.token_analyzer import TokenCategory, Token
 
 class NodeType(Enum):
-    let = 1
-    fcn_form = 2
-    identifier = 3
-    integer = 4
-    string = 5
-    where = 6
-    gamma = 7
-    lambda_expr = 8
-    tau = 9
-    rec = 10
-    aug = 11
-    conditional = 12
-    op_or = 13
-    op_and = 14
-    op_not = 15
-    op_compare = 16
-    op_plus = 17
-    op_minus = 18
-    op_neg = 19
-    op_mul = 20
-    op_div = 21
-    op_pow = 22
-    at = 23
-    true_value = 24
-    false_value = 25
-    nil = 26
-    dummy = 27
-    within = 28
-    and_op = 29
-    equal = 30
-    comma = 31
-    empty_params = 32
+    let = auto()
+    fcn_form = auto()
+    identifier = auto()
+    integer = auto()
+    string = auto()
+    where = auto()
+    gamma = auto()
+    lambda_expr = auto()
+    tau = auto()
+    rec = auto()
+    aug = auto()
+    conditional = auto()
+    op_or = auto()
+    op_and = auto()
+    op_not = auto()
+    op_compare = auto()
+    op_plus = auto()
+    op_minus = auto()
+    op_neg = auto()
+    op_mul = auto()
+    op_div = auto()
+    op_pow = auto()
+    at = auto()
+    true_value = auto()
+    false_value = auto()
+    nil = auto()
+    dummy = auto()
+    within = auto()
+    and_op = auto()
+    equal = auto()
+    comma = auto()
+    empty_params = auto()
 
 
 class Node:
@@ -72,46 +72,6 @@ class SyntaxParser:
                 print(f"<{token.get_category().name}, {token.get_value()}>")
             return None
 
-    def convert_ast_to_string_ast(self):
-        dots = ""
-        stack = []
-
-        while self.ast:
-            if not stack:
-                if self.ast[-1].no_of_children == 0:
-                    self.add_strings(dots, self.ast.pop())
-                else:
-                    node = self.ast.pop()
-                    stack.append(node)
-            else:
-                if self.ast[-1].no_of_children > 0:
-                    node = self.ast.pop()
-                    stack.append(node)
-                    dots += "."
-                else:
-                    stack.append(self.ast.pop())
-                    dots += "."
-                    while stack[-1].no_of_children == 0:
-                        self.add_strings(dots, stack.pop())
-                        if not stack:
-                            break
-                        dots = dots[:-1]
-                        node = stack.pop()
-                        node.no_of_children -= 1
-                        stack.append(node)
-
-        # Reverse the list
-        self.string_ast.reverse()
-        return self.string_ast
-
-    def add_strings(self, dots, node):
-        if node.type in [NodeType.identifier, NodeType.integer, NodeType.string, NodeType.true_value,
-                         NodeType.false_value, NodeType.nil, NodeType.dummy]:
-            self.string_ast.append(dots + "<" + node.type.name.upper() + ":" + node.value + ">")
-        elif node.type == NodeType.fcn_form:
-            self.string_ast.append(dots + "function_form")
-        else:
-            self.string_ast.append(dots + node.value)
 
     # Expressions 
                 
