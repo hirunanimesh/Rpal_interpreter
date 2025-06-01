@@ -66,7 +66,12 @@ def main():
         if args.ast:
             print("Abstract Syntax Tree:")
             for line in ast_strings:
-                print(line)
+                if "IDENTIFIER" in line:
+                    print(line.replace("IDENTIFIER", "ID"))
+                elif "INTEGER" in line:
+                    print(line.replace("INTEGER", "INT"))
+                else:
+                    print(line)
             return
         
         #Step 3: Build and standardize the tree
@@ -85,7 +90,7 @@ def main():
         cse_machine = cse_builder.get_cse_machine(std_tree)
         
         # Execute the program and print the result
-        print("Output of the program is:")
+        print("Output of the above program is:")
         print(cse_machine.get_answer())
         
     except FileNotFoundError:
